@@ -9,21 +9,21 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 /**
- * Cita de tipo Consulta médica general.
+ * Cita de tipo Consulta médica.
  */
 @Entity
-@DiscriminatorValue("CONSULTATION")
+@DiscriminatorValue("CONSULTA")
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class ConsultationAppointment extends Appointment {
+public class CitaConsulta extends Cita {
 
     /** Especialidad médica requerida para la consulta. */
     @Column(length = 100)
-    private String specialty;
+    private String especialidad;
 
     /** Indica si es una consulta de seguimiento de una cita previa. */
     @Column
-    private Boolean isFollowUp;
+    private Boolean esSeguimiento;
 }

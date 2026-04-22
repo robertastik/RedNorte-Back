@@ -12,22 +12,22 @@ import lombok.experimental.SuperBuilder;
  * Cita de tipo Cirugía.
  */
 @Entity
-@DiscriminatorValue("SURGERY")
+@DiscriminatorValue("CIRUGIA")
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class SurgeryAppointment extends Appointment {
+public class CitaCirugia extends Cita {
 
     /** Nombre del procedimiento quirúrgico a realizar. */
     @Column(length = 200)
-    private String procedureName;
+    private String nombreProcedimiento;
 
-    /** Indica si requiere sala de operaciones con anestesia general. */
+    /** Indica si requiere anestesia general. */
     @Column
-    private Boolean requiresGeneralAnesthesia;
+    private Boolean requiereAnestesiaGeneral;
 
     /** Duración estimada de la cirugía en minutos. */
     @Column
-    private Integer estimatedDurationMinutes;
+    private Integer duracionEstimadaMinutos;
 }

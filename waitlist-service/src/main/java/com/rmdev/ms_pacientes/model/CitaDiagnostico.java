@@ -12,18 +12,18 @@ import lombok.experimental.SuperBuilder;
  * Cita de tipo Diagnóstico (exámenes, imágenes, laboratorio).
  */
 @Entity
-@DiscriminatorValue("DIAGNOSIS")
+@DiscriminatorValue("DIAGNOSTICO")
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class DiagnosisAppointment extends Appointment {
+public class CitaDiagnostico extends Cita {
 
-    /** Tipo de examen diagnóstico (ej. "Radiografía", "Resonancia Magnética", "Hemograma"). */
+    /** Tipo de examen diagnóstico (ej. "Radiografía", "Resonancia Magnética"). */
     @Column(length = 150)
-    private String examType;
+    private String tipoExamen;
 
     /** Indica si el paciente debe venir en ayunas. */
     @Column
-    private Boolean requiresFasting;
+    private Boolean requiereAyuno;
 }
