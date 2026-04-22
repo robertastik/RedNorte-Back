@@ -9,11 +9,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * Registro central de fábricas de solicitudes médicas.
- * Spring inyecta automáticamente todas las implementaciones de FabricaSolicitudMedica.
- * El servicio usa este registro para obtener la fábrica correcta según el tipo de cita.
- */
 @Component
 public class RegistroFabricasCitas {
 
@@ -24,14 +19,6 @@ public class RegistroFabricasCitas {
                 .collect(Collectors.toMap(FabricaSolicitudMedica::getTipo, Function.identity()));
     }
 
-    /**
-     * Crea una Cita delegando en la fábrica correspondiente al tipo indicado.
-     *
-     * @param tipo     Tipo de cita médica.
-     * @param solicitud DTO con los datos.
-     * @return Cita instanciada.
-     * @throws IllegalArgumentException si no existe fábrica para el tipo dado.
-     */
     public Cita crear(TipoCita tipo, Object solicitud) {
         FabricaSolicitudMedica fabrica = fabricas.get(tipo);
         if (fabrica == null) {

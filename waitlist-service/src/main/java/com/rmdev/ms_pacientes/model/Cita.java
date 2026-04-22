@@ -1,27 +1,14 @@
 package com.rmdev.ms_pacientes.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * Entidad base para todas las citas médicas.
- * Estrategia SINGLE_TABLE: todas las subclases se almacenan en la tabla "citas",
- * diferenciadas por la columna discriminadora "tipo_cita".
- */
 @Entity
 @Table(name = "citas")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_cita", discriminatorType = DiscriminatorType.STRING)
-@Getter
-@Setter
-@NoArgsConstructor
-@SuperBuilder
 public abstract class Cita {
 
     @Id
@@ -60,4 +47,18 @@ public abstract class Cita {
     protected void alActualizar() {
         this.actualizadoEn = LocalDateTime.now();
     }
+
+    public UUID getId() { return id; }
+    public UUID getPacienteId() { return pacienteId; }
+    public void setPacienteId(UUID pacienteId) { this.pacienteId = pacienteId; }
+    public UUID getMedicoId() { return medicoId; }
+    public void setMedicoId(UUID medicoId) { this.medicoId = medicoId; }
+    public LocalDateTime getFechaProgramada() { return fechaProgramada; }
+    public void setFechaProgramada(LocalDateTime fechaProgramada) { this.fechaProgramada = fechaProgramada; }
+    public EstadoCita getEstado() { return estado; }
+    public void setEstado(EstadoCita estado) { this.estado = estado; }
+    public String getObservaciones() { return observaciones; }
+    public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
+    public LocalDateTime getCreadoEn() { return creadoEn; }
+    public LocalDateTime getActualizadoEn() { return actualizadoEn; }
 }

@@ -6,9 +6,6 @@ import com.rmdev.ms_pacientes.model.CitaCirugia;
 import com.rmdev.ms_pacientes.model.TipoCita;
 import org.springframework.stereotype.Component;
 
-/**
- * Fábrica concreta para citas de tipo Cirugía.
- */
 @Component
 public class FabricaSolicitudCirugia implements FabricaSolicitudMedica {
 
@@ -17,15 +14,15 @@ public class FabricaSolicitudCirugia implements FabricaSolicitudMedica {
         if (!(solicitud instanceof SolicitudCirugia dto)) {
             throw new IllegalArgumentException("Se esperaba un SolicitudCirugia");
         }
-        return CitaCirugia.builder()
-                .pacienteId(dto.pacienteId())
-                .medicoId(dto.medicoId())
-                .fechaProgramada(dto.fechaProgramada())
-                .observaciones(dto.observaciones())
-                .nombreProcedimiento(dto.nombreProcedimiento())
-                .requiereAnestesiaGeneral(dto.requiereAnestesiaGeneral())
-                .duracionEstimadaMinutos(dto.duracionEstimadaMinutos())
-                .build();
+        CitaCirugia cita = new CitaCirugia();
+        cita.setPacienteId(dto.pacienteId());
+        cita.setMedicoId(dto.medicoId());
+        cita.setFechaProgramada(dto.fechaProgramada());
+        cita.setObservaciones(dto.observaciones());
+        cita.setNombreProcedimiento(dto.nombreProcedimiento());
+        cita.setRequiereAnestesiaGeneral(dto.requiereAnestesiaGeneral());
+        cita.setDuracionEstimadaMinutos(dto.duracionEstimadaMinutos());
+        return cita;
     }
 
     @Override

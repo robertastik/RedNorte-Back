@@ -6,9 +6,6 @@ import com.rmdev.ms_pacientes.model.CitaDiagnostico;
 import com.rmdev.ms_pacientes.model.TipoCita;
 import org.springframework.stereotype.Component;
 
-/**
- * Fábrica concreta para citas de tipo Diagnóstico.
- */
 @Component
 public class FabricaSolicitudDiagnostico implements FabricaSolicitudMedica {
 
@@ -17,14 +14,14 @@ public class FabricaSolicitudDiagnostico implements FabricaSolicitudMedica {
         if (!(solicitud instanceof SolicitudDiagnostico dto)) {
             throw new IllegalArgumentException("Se esperaba un SolicitudDiagnostico");
         }
-        return CitaDiagnostico.builder()
-                .pacienteId(dto.pacienteId())
-                .medicoId(dto.medicoId())
-                .fechaProgramada(dto.fechaProgramada())
-                .observaciones(dto.observaciones())
-                .tipoExamen(dto.tipoExamen())
-                .requiereAyuno(dto.requiereAyuno())
-                .build();
+        CitaDiagnostico cita = new CitaDiagnostico();
+        cita.setPacienteId(dto.pacienteId());
+        cita.setMedicoId(dto.medicoId());
+        cita.setFechaProgramada(dto.fechaProgramada());
+        cita.setObservaciones(dto.observaciones());
+        cita.setTipoExamen(dto.tipoExamen());
+        cita.setRequiereAyuno(dto.requiereAyuno());
+        return cita;
     }
 
     @Override
